@@ -14,17 +14,16 @@ app.get("/", (req, res, next) => {
 app.get("/random", (req, res, next) => {
   let randomJoke = client.getRandomJoke()
     .then((response) => {
-      // use the response here
+      console.log(response);
+      res.render ("index", {
+        randomJoke: response
+      });
     }).catch((err) => {
       // handle error
     });
-  res.render ("index", {
-    randomJoke: randomJoke
-  });
+
 
   // Retrieve a random chuck joke
-
-
 });
 
 app.get("/categories", (req, res, next) => {
