@@ -6,13 +6,25 @@ const client = new Chuck();
 app.set ("views", __dirname + "/views");
 
 app.set ("view engine", "ejs");
-
+app.listen(3000, () => console.log("Listening to port 3000"));
 app.get("/", (req, res, next) => {
   res.render ("index");
 });
 
 app.get("/random", (req, res, next) => {
-  res.render ("index");
+  let randomJoke = client.getRandomJoke()
+    .then((response) => {
+      // use the response here
+    }).catch((err) => {
+      // handle error
+    });
+  res.render ("index", {
+    randomJoke: randomJoke
+  });
+
+  // Retrieve a random chuck joke
+
+
 });
 
 app.get("/categories", (req, res, next) => {
